@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+    <title>Sell</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <p>Finance</p>
+        </div>
+        <ul>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/buy">Buy</a></li>
+            <li><a href="/sell">Sell</a></li>
+            <li><a href="/history">History</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+        </ul>
+        <div class="logout">
+            <li><a href="/logout">Log out</a></li>
+        </div>
+    </header>
+    <main>
+        <form action="/sell" method="post">
+            <select name="symbol" id="">
+                {% if user_transactions_list %}
+                    {% for share in user_transactions_list %}
+                        {% if share.shares > 0 %}
+                            <option value="{{share.name}}">{{share.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <option value="" disabled selected>No shares available for selling</option>
+                {% endif %}
+            </select>            
+            <input type="number" name="qtdy" id="" placeholder="qtdy">
+            <button type="submit">sell</button>
+        </form>
+    </main>
+</body>
+</html>

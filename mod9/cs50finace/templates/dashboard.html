@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>dashboard</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="static/styles.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <p>Finance</p>
+            </div>
+            <ul>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/buy">Buy</a></li>
+                <li><a href="/sell">Sell</a></li>
+                <li><a href="/history">History</a></li>
+            </ul>
+            <div class="logout">
+                <li><a href="/logout">Log out</a></li>
+            </div>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>SYMBOL</th>
+                        <th>SHARES</th>
+                        <th>PRICE</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if transactions %}
+                    {% for transaction in transactions %}
+                    {% if transaction.type == "buy" and transaction.shares > 0 %}
+                    <tr>
+                        <td>{{ transaction.name }}</td>
+                        <td>{{ transaction.shares }}</td>
+                        <td>{{ transaction.price }}</td>
+                        <td>$ {{ transaction.total | round(2)}}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        {% if user %}
+                        <td class="footer-title">CASH</td>
+                        <td>$ {{ user.cash |  round(2) }}</td>
+                        {% else %}
+                        <td></td>
+                        <td></td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        {% if user %}
+                        <td class="footer-title">TOTAL</td>
+                        {% if total_invested %}
+                        <td>$ {{ ((total_invested | round(2)) + (user.cash | round(2))) | round(2) }}</td>
+                        {% else %}
+                        <td>$ {{ user.cash |  round(2) }}</td>
+                        {% endif %}
+                        {% else %}
+                        <td></td>
+                        <td></td>
+                        {% endif %}
+                    </tr>
+                </tfoot>
+            </table>
+        </main>
+    </body>
+</html>

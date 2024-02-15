@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday</title>
+</head>
+<body>
+    <header>
+        <h1>Birthdays</h1>
+    </header>
+    <main>
+        <form action="/addbirthday" method="post">
+            <h2 class="form-title">Add a Birthday</h2>
+            <input type="text" name="name" id="" placeholder="name">
+            <input type="number" name="mouth" id="" placeholder="mouth">
+            <input type="number" name="day" id="" placeholder="day">
+            <button type="submit">Add Birthday</button>
+        </form>
+        <table>
+            <h2 class="table-title">All Birthdays</h2>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>birthday</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if birthdays}}
+                {{#each birthdays}}
+                <tr>
+                    <td>{{this.birthday_person}}</td>
+                    <td>{{this.mouth}}/{{this.birthday_day}}</td>
+                </tr>
+                {{/each}}
+                {{else}}
+                    <td colspan="3" class="no-birthdays">No birthdays available</td>
+                {{/if}}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

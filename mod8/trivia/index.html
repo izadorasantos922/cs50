@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+    <title>TRIVIA CS50</title>
+</head>
+<body>
+    <header>
+        <h1 class="title">Trivia</h1>
+    </header>
+    <main>
+        <div class="div-question">
+            <h2>Part 1: Multiply Choice</h2>
+            <hr>
+            <p class="question">What's the approximate ratio of people to sheep in New Zealand?</p>
+            <div class="choices">
+                <div class="choice">
+                    <button class="incorrect btn">3 people per 1 sheep</button>
+                    <p class="message incorrect hide">incorrect!</p>
+                </div>
+                <div class="choice">
+                    <button class="correct btn">6 people per 1 sheep</button>
+                    <p class="message correct hide">correct!</p>
+                </div>
+                <div class="choice">
+                    <button class="incorrect btn">1 people per 1 sheep</button>
+                    <p class="message incorrect hide">incorrect!</p>
+                </div>
+                <div class="choice">
+                    <button class="incorrect btn">1 people per 3 sheep</button>
+                    <p class="message incorrect hide">incorrect!</p>
+                </div>
+            </div>
+        </div>
+            <div class="div-question">
+                <h2>Part 2: Free response</h2>
+                <hr>
+                <p class="question">What the China's capital?</p>
+                <div class="anwser-text">
+                    <form action="">
+                        <p class="text-message"></p>
+                        <input type="text" name="anwser" id="free-anwser" placeholder="Writte your answer">
+                        <button type="button" onclick="handleInput()">Check</button>
+                    </form>
+                </div>
+            </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
