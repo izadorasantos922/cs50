@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="static/styles.css">
+        <title>History</title>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <p>Finance</p>
+            </div>
+            <ul>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/buy">Buy</a></li>
+                <li><a href="/sell">Sell</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
+            <div class="/logout">
+                <li><a href="logout">Log out</a></li>
+            </div>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>SYMBOL</th>
+                        <th>SHARES</th>
+                        <th>PRICE</th>
+                        <th>TRANSACTED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if user_transactions_list %}
+                    {% for transaction in user_transactions_list %}
+                    {% if transaction.type == "buy" %}
+                    <tr>
+                        <td>{{ transaction.name }}</td>
+                        <td>{{ transaction.shares }}</td>
+                        <td>$ {{ transaction.price | round(2) }}</td>
+                        <td>{{ transaction.formatted_timestamp }} </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td>{{ transaction.name }}</td>
+                        <td>- {{ transaction.shares }}</td>
+                        <td>$ {{ transaction.price | round(2)}}</td>
+                        <td>{{ transaction.formatted_timestamp }} </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
